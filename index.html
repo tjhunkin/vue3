@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue3Ftw</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+<div id="app">
+
+    <p>
+        <label>
+            <input type="text" v-model="greeting">
+        </label>
+    </p>
+
+    <p>
+        {{ greeting }} ({{ greeting.length }})
+    </p>
+
+</div>
+
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                greeting: 'Hello World'
+            };
+        },
+        mounted() {
+            setTimeout(() => {
+                this.greeting = 'Changed';
+            }, 3000)
+        }
+    }).mount('#app');
+</script>
+</body>
+</html>

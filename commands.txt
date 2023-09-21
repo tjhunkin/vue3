@@ -1,0 +1,2 @@
+~ launch app (requires node with npx/npm)
+npx serve
