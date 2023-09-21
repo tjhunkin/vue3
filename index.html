@@ -4,33 +4,58 @@
     <meta charset="UTF-8">
     <title>Vue3Ftw</title>
     <script src="https://unpkg.com/vue@3"></script>
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        /* centre buttons */
+        body {
+            display: grid;
+            place-items: center;
+        }
+
+        .text-red {
+            color: red;
+        }
+
+        .text-green {
+            color: green;
+        }
+    </style>
 </head>
 <body>
 <div id="app">
+    <!-- v-bind as just : for shorthand, always use this version-->
+    <button :class="buttonClasses" v-on:click="toggle">Click Me</button>
 
-    <p>
-        <label>
-            <input type="text" v-model="greeting">
-        </label>
-    </p>
+    <!-- best method: switching colors based on the state-->
+    <!-- v-on as just @ for shorthand, always use this version-->
+    <button :class="active ? 'text-red' : 'text-green'" @click="toggle">Best Method</button>
 
-    <p>
-        {{ greeting }} ({{ greeting.length }})
-    </p>
-
+    <!-- Bind buttonClasses to class attribute of button element-->
+    <button v-bind:class="buttonClasses">Long Form of v-bind</button>
 </div>
 
 <script>
     Vue.createApp({
         data() {
             return {
-                greeting: 'Hello World'
+                buttonClasses: 'text-green',
+                active: false
             };
+        },
+        methods: {
+            toggle() {
+                // alert('Yo');
+                this.buttonClasses = 'text-red';
+                this.active = !this.active; // switch between red and green
+            }
         },
         mounted() {
             setTimeout(() => {
-                this.greeting = 'Changed';
-            }, 3000)
+                document.title = 'Episode 2: Attribute Binding and Event Handling';
+            }, 1000)
         }
     }).mount('#app');
 </script>
