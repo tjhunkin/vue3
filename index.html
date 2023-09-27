@@ -1,63 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
 <head>
     <meta charset="UTF-8">
     <title>Vue3Ftw</title>
     <script src="https://unpkg.com/vue@3"></script>
-    <style>
-        html, body {
-            height: 100%;
-        }
-
-        /* centre buttons */
-        body {
-            display: grid;
-            place-items: center;
-        }
-
-        .text-red {
-            color: red;
-        }
-
-        .text-green {
-            color: green;
-        }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="h-full grid place-items-center">
 <div id="app">
-    <!-- v-bind as just : for shorthand, always use this version-->
-    <button :class="buttonClasses" v-on:click="toggle">Click Me</button>
+    <section
+            v-show="assignments.filter(a => ! a.complete).length"
+    >
+        <h2 class="font-bold mb-2">Vue List: In Progress</h2>
 
-    <!-- best method: switching colors based on the state-->
-    <!-- v-on as just @ for shorthand, always use this version-->
-    <button :class="active ? 'text-red' : 'text-green'" @click="toggle">Best Method</button>
+        <!--vue way-->
+        <ul>
+            <li
+                    v-for="assignment in assignments.filter(a => ! a.complete)"
+                    :key="assignment.id"
+            >
+                <label>
+                    {{ assignment.name }}
+                    <input type="checkbox" v-model="assignment.complete">
+                </label>
+            </li>
+        </ul>
+    </section>
 
-    <!-- Bind buttonClasses to class attribute of button element-->
-    <button v-bind:class="buttonClasses">Long Form of v-bind</button>
+    <section class="mt-8"
+             v-show="assignments.filter(a => a.complete).length"
+    >
+        <h2 class="font-bold mb-2">Vue List: Completed</h2>
+
+        <!--vue way-->
+        <ul>
+            <li
+                    v-for="assignment in assignments.filter(a => a.complete)"
+                    :key="assignment.id"
+            >
+                <label>
+                    {{ assignment.name }}
+                    <input type="checkbox" v-model="assignment.complete">
+                </label>
+            </li>
+        </ul>
+    </section>
+
+    <!--To view the objects getting updated realtime-->
+    <pre>
+        {{ assignments }}
+    </pre>
+
+    <h2 class="font-bold mb-2">Traditional List</h2>
+
+    <!--traditional unordered list of items-->
+    <ul>
+        <li>Make Coffee<input type="checkbox"></li>
+        <li>Eat Chocolate<input type="checkbox"></li>
+        <li>Go for a massage<input type="checkbox"></li>
+    </ul>
 </div>
 
 <script>
-    Vue.createApp({
+    let app = {
         data() {
             return {
-                buttonClasses: 'text-green',
-                active: false
+                assignments: [ // array of objects
+                    {id: 1, name: 'Make Coffee', complete: false},
+                    {id: 2, name: 'Eat Chocolate', complete: false},
+                    {id: 3, name: 'Go for a massage', complete: false},
+                ]
             };
         },
-        methods: {
-            toggle() {
-                // alert('Yo');
-                this.buttonClasses = 'text-red';
-                this.active = !this.active; // switch between red and green
-            }
-        },
+        methods: {},
         mounted() {
             setTimeout(() => {
-                document.title = 'Episode 2: Attribute Binding and Event Handling';
+                document.title = 'Episode 3: Lists, Conditionals, and Computed Properties';
             }, 1000)
         }
-    }).mount('#app');
+    };
+
+    Vue.createApp(app).mount('#app');
 </script>
 </body>
 </html>

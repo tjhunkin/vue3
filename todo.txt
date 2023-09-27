@@ -1,0 +1,4 @@
+Composition API
+Typescript
+Laravel Auth
+<script setup

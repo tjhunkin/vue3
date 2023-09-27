@@ -1,0 +1,10 @@
+~ always use shorthand e.g. v-bind as just :, v-on as just @
+    <button :class="buttonClasses" @click="toggle">Click Me</button>
+
+~ looping, always use a unique key, also put attributes on their own line
+    <li
+            v-for="assignment in assignments.filter(a => !a.complete)"
+            :key="assignment.id"
+    >
+~ v-show doesn't completely remove html, just sets display to none
+    <section class="mt-8" v-show="assignments.filter(a => a.complete).length">
