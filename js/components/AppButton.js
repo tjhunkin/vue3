@@ -1,4 +1,5 @@
 export default {
+    // button class object is the class: rendering condition, which is boolean
     template: `
       <button
           :class="{

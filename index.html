@@ -2,7 +2,8 @@
 <html lang="en" class="h-full">
 <head>
     <meta charset="UTF-8">
-    <title>Episode 5: Extract Components to Their Own Files</title>
+    <!--Title overwritten in mount section of App.js-->
+    <title>Vue Learning</title>
     <script src="https://unpkg.com/vue@3"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -36,10 +37,17 @@
 
 <body class="h-full grid place-items-center">
 <div id="app">
+    <!--props are for sending data into components-->
+    <!--    e.g. the processing prop is sending the value of true to the AppButton-->
+    <!--AppButton will have a prop on it named 'type' in the props section of the component-->
+    <!--By default, it would be a 'primary' button if the type is omitted-->
+    <!--The 'Submit' text will be rendered in the slot tag in the component-->
     <app-button :processing="true">Submit</app-button>
 </div>
 
+<!--This script is specified as a module in order for it to work-->
 <script type="module">
+    // important to specify the exact file path and name with the file extension
     import App from "./js/components/App.js";
 
     Vue.createApp(App).mount('#app');
