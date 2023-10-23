@@ -1,5 +1,6 @@
 import Assignments from "./Assignments.js";
 
+// root component of the application
 export default {
     components: {Assignments},
 

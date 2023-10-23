@@ -8,11 +8,14 @@
 </head>
 
 <body class="h-full grid place-items-center">
+<!--Application will be mounted in this div-->
 <div id="app"></div>
 
 <script type="module">
+    // primary component that is the overall application
     import App from './js/components/App.js';
 
+    // create the application, injecting the root component in the div tag specified above
     Vue.createApp(App).mount('#app');
 </script>
 </body>
