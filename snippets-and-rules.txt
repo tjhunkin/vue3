@@ -1,3 +1,8 @@
+### Components
+~ parent components communicate with child components by passing down props
+~ child components communicate with parent components by emitting
+
+### Directives
 ~ always use shorthand e.g. v-bind as just :, v-on as just @
     <button :class="buttonClasses" @click="toggle">Click Me</button>
 

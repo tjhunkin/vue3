@@ -1,7 +1,8 @@
 import AssignmentList from "./AssignmentList.js";
+import AssignmentCreate from "./AssignmentCreate.js";
 
 export default {
-    components: {AssignmentList},
+    components: {AssignmentList, AssignmentCreate},
 
     template: `
       <section class="space-y-6">
@@ -9,13 +10,10 @@ export default {
         <assignment-list :assignments="filters.inProgress" title="In Progress"></assignment-list>
         <assignment-list :assignments="filters.completed" title="Completed"></assignment-list>
 
-        <!--prevent the submission of the form to avoid a page reload-->
-        <form @submit.prevent="add">
-          <div class="border border-gray-600 text-black">
-            <input v-model="newAssignment" placeholder="New Assignment..." class="p-2" required>
-            <button type="submit" class="bg-white p-2 border-l">Add</button>
-          </div>
-        </form>
+        <!--when the $emit function is fired on the child component, with the name of 'assignmentCreateAction',-->
+        <!--fire the parent function called add-->
+        <!--assignmentCreateAction is a custom event-->
+        <assignment-create @assignmentCreateAction="add"></assignment-create>
       </section>
     `,
 
@@ -28,7 +26,6 @@ export default {
                 {name: 'Read Chapter 4', complete: false, id: 2},
                 {name: 'Turn in Homework', complete: false, id: 3},
             ],
-            newAssignment: ''
         }
     },
 
@@ -42,30 +39,26 @@ export default {
     },
 
     methods: {
-        add(e) {
-            // e.preventDefault(); should rather be done with modifiers as above
+        // assigmentName argument comes from the child component emit vue function from the second argument
+        // seems that it can be called whatever you want it to be
+        add(assigmentName) {
 
-            const addAssignment = { name: this.newAssignment };
+            const addAssignment = { name: assigmentName };
 
             // some: performs the specified action for each element in an array
             const assignmentExists = this.assignments.some(obj => obj.name === addAssignment.name);
 
             if (assignmentExists) {
-                alert('Assignment ' + this.newAssignment + ' already exists');
+                alert('Assignment ' + assigmentName + ' already exists');
             }
 
             if (! assignmentExists) {
                 this.assignments.push({
-                    name: this.newAssignment,
-                    complete: false,
+                    name: assigmentName,
+                    completed: false,
                     id: this.assignments.length + 1
                 });
             }
-
-            // clear the input afterward
-            this.newAssignment = '';
-
-            // alert(this.newAssignment);
         }
     }
 }
