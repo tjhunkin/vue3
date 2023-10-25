@@ -5,6 +5,7 @@ export default {
 
     template: `
       <section class="space-y-6">
+        <!--title and assignments are props (properties) on the AssignmentList component-->
         <assignment-list :assignments="filters.inProgress" title="In Progress"></assignment-list>
         <assignment-list :assignments="filters.completed" title="Completed"></assignment-list>
       </section>
