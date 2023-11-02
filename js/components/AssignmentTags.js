@@ -2,14 +2,16 @@ export default {
     template: `
       <div class="flex gap-2">
         <!--user clicks on a tag, we then emit a change with that tag that was clicked-->
+        <!--note that both class (class and :class) properties will be merged-->
         <button
             @click="$emit('change', tag)"
             v-for="tag in tags"
             class="border rounded px-1 py-px text-xs"
             :class="{
                 'border-blue-500 text-blue-500': tag === currentTag 
-              }"
-        >{{ tag }}
+            }
+        ">
+          {{ tag }}
         </button>
       </div>`,
     props: {
