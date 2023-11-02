@@ -22,9 +22,9 @@ export default {
     data() {
         return {
             assignments: [
-                {name: 'Finish project', complete: false, id: 1},
-                {name: 'Read Chapter 4', complete: false, id: 2},
-                {name: 'Turn in Homework', complete: false, id: 3},
+                {name: 'Finish project', complete: false, id: 1, tag: 'math'},
+                {name: 'Read Chapter 4', complete: false, id: 2, tag: 'science'},
+                {name: 'Turn in Homework', complete: false, id: 3, tag: 'math'},
             ],
         }
     },
@@ -43,7 +43,7 @@ export default {
         // seems that it can be called whatever you want it to be
         add(assigmentName) {
 
-            const addAssignment = { name: assigmentName };
+            const addAssignment = {name: assigmentName};
 
             // some: performs the specified action for each element in an array
             const assignmentExists = this.assignments.some(obj => obj.name === addAssignment.name);
@@ -52,7 +52,7 @@ export default {
                 alert('Assignment ' + assigmentName + ' already exists');
             }
 
-            if (! assignmentExists) {
+            if (!assignmentExists) {
                 this.assignments.push({
                     name: assigmentName,
                     completed: false,
