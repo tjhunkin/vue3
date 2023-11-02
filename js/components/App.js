@@ -9,7 +9,7 @@ export default {
     `,
     mounted() {
         setTimeout(() => {
-            document.title = 'Episode 10: It\'s All So Easy';
+            document.title = 'Episode 11: Component Responsibility';
         }, 1000)
     },
 }
