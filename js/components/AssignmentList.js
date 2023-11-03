@@ -30,6 +30,7 @@ export default {
       </section>
     `,
 
+    // passed from the parent component
     props: {
         assignments: Array,
         title: String
