@@ -11,7 +11,7 @@ export default {
     `,
     mounted() {
         setTimeout(() => {
-            document.title = 'Episode 11: Component Responsibility';
+            document.title = 'Episode 12: A Deeper Look at V-Model';
         }, 1000);
     },
 }

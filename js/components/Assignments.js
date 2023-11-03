@@ -56,7 +56,8 @@ export default {
                 this.assignments.push({
                     name: assigmentName,
                     completed: false,
-                    id: this.assignments.length + 1
+                    id: this.assignments.length + 1,
+                    tag: 'none'
                 });
             }
         }

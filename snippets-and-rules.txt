@@ -2,6 +2,13 @@
 ~ parent components communicate with child components by passing down props
 ~ child components communicate with parent components by emitting
 
+### v-model
+~ binds the value and listens for then the value changes (2 way binding)
+~ long form of v-model would look like this <input type="text" :value="name" @input="name = $event.target.value">
+~ which is the exact same as <input type="text" v-model="name">
+~ child components can have a prop named modelValue which will automatically have the v-model value in it from the
+  parent component
+
 ### Directives
 ~ always use shorthand e.g. v-bind as just :, v-on as just @
     <button :class="buttonClasses" @click="toggle">Click Me</button>
