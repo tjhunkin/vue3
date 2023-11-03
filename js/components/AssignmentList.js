@@ -15,7 +15,7 @@ export default {
         <!--after user clicks on the tag, it emits a change with the tag selected, in turn, this component waits for that change-->
         <!--we will the store that tag selected as the current tag-->
         <assignment-tags
-            v-model="currentTag"
+            v-model:currentTag="currentTag"
             :data-tags="assignments.map(a => a.tag)"
             :current-tag="currentTag"
         >
