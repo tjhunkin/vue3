@@ -21,12 +21,17 @@ export default {
     // computed, methods etc. seem to be key/value pairs
     data() {
         return {
-            assignments: [
-                {name: 'Finish project', complete: false, id: 1, tag: 'math'},
-                {name: 'Read Chapter 4', complete: false, id: 2, tag: 'science'},
-                {name: 'Turn in Homework', complete: false, id: 3, tag: 'math'},
-            ],
+            assignments: [],
         }
+    },
+
+    created() {
+        // start json server first: npx json-server data/db.json -p 3001
+        fetch('http://localhost:3001/assignments')
+            .then(response => response.json())
+            .then(assignments => {
+                this.assignments = assignments;
+            });
     },
 
     computed: {

@@ -1,2 +1,3 @@
 ~ launch app (requires node with npx/npm)
 npx serve
+npx json-server data/db.json -p 3001

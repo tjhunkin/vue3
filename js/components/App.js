@@ -11,7 +11,7 @@ export default {
     `,
     mounted() {
         setTimeout(() => {
-            document.title = 'Episode 12: A Deeper Look at V-Model';
+            document.title = 'Episode 13: Lifecycle Hooks, Fake APIs, and AJAX';
         }, 1000);
     },
 }
