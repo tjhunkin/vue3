@@ -1,11 +1,15 @@
 import Assignment from "./Assignment.js";
 import AssignmentTags from "./AssignmentTags.js";
+import Panel from "./Panel.js";
 
 export default {
-    components: {Assignment, AssignmentTags},
+    components: {Assignment, AssignmentTags, Panel},
 
     template: `
-      <section v-show="assignments.length" class="w-60">
+      <Panel v-show="assignments.length" class="w-70" theme="light">
+      
+        <template #heading>panel heading</template>
+      
         <div class="flex justify-between items-start">
             <h2 class="font-bold mb-2">
             {{ title }}
@@ -14,7 +18,6 @@ export default {
             
             <button v-show="canToggle" @click="$emit('toggle')">&times;</button>   
         </div>
-
 
         <!--magic $event variable, contains second argument (tag) from $emit-->
         <!--after user clicks on the tag, it emits a change with the tag selected, in turn, this component waits for that change-->
@@ -35,7 +38,9 @@ export default {
         </ul>
         
         <slot></slot>
-      </section>
+        
+        <template #footer>panel footer</template>
+      </Panel>
     `,
 
     // passed from the parent component
