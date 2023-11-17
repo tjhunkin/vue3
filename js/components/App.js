@@ -11,7 +11,7 @@ export default {
     `,
     mounted() {
         setTimeout(() => {
-            document.title = 'Episode 13: Lifecycle Hooks, Fake APIs, and AJAX';
+            document.title = 'Episode 14: More Flexible Components With Slots and Flags';
         }, 1000);
     },
 }

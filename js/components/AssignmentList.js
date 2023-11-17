@@ -5,11 +5,16 @@ export default {
     components: {Assignment, AssignmentTags},
 
     template: `
-      <section v-show="assignments.length">
-        <h2 class="font-bold mb-2">
-          {{ title }}
-          <span>({{ assignments.length }})</span>
-        </h2>
+      <section v-show="assignments.length" class="w-60">
+        <div class="flex justify-between items-start">
+            <h2 class="font-bold mb-2">
+            {{ title }}
+            <span>({{ assignments.length }})</span>
+            </h2>   
+            
+            <button v-show="canToggle" @click="$emit('toggle')">&times;</button>   
+        </div>
+
 
         <!--magic $event variable, contains second argument (tag) from $emit-->
         <!--after user clicks on the tag, it emits a change with the tag selected, in turn, this component waits for that change-->
@@ -28,13 +33,16 @@ export default {
               :assignment="assignment"
           ></assignment>
         </ul>
+        
+        <slot></slot>
       </section>
     `,
 
     // passed from the parent component
     props: {
         assignments: Array,
-        title: String
+        title: String,
+        canToggle: { type: Boolean, default: false }
     },
 
     data() {

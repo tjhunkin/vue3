@@ -4,7 +4,8 @@
   "description": "vue3 learning",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx serve & npx json-server data/db.json -p 3001"
   },
   "author": "",
   "license": "ISC",

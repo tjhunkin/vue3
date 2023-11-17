@@ -20,3 +20,6 @@
     >
 ~ v-show doesn't completely remove html, just sets display to none
     <section class="mt-8" v-show="assignments.filter(a => a.complete).length">
+
+### package.json
+~ & simultaneously, && one command after the next

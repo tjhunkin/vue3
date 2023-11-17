@@ -5,15 +5,25 @@ export default {
     components: {AssignmentList, AssignmentCreate},
 
     template: `
-      <section class="space-y-6">
+      <section class="flex gap-8">
         <!--title and assignments are props (properties) on the AssignmentList component-->
-        <assignment-list :assignments="filters.inProgress" title="In Progress"></assignment-list>
-        <assignment-list :assignments="filters.completed" title="Completed"></assignment-list>
+        <assignment-list :assignments="filters.inProgress" title="In Progress">
+            <!--when the $emit function is fired on the child component, with the name of 'assignmentCreateAction',-->
+            <!--fire the parent function called add-->
+            <!--assignmentCreateAction is a custom event-->
+            <!--will render in the slot-->
+            <assignment-create @assignmentCreateAction="add"></assignment-create>
+        </assignment-list>
+        
+         <div v-show="showCompleted">
+            <assignment-list 
+            :assignments="filters.completed" 
+            title="Completed" 
+            can-toggle 
+            @toggle="showCompleted = !showCompleted">
+            </assignment-list>
+         </div>
 
-        <!--when the $emit function is fired on the child component, with the name of 'assignmentCreateAction',-->
-        <!--fire the parent function called add-->
-        <!--assignmentCreateAction is a custom event-->
-        <assignment-create @assignmentCreateAction="add"></assignment-create>
       </section>
     `,
 
@@ -22,6 +32,7 @@ export default {
     data() {
         return {
             assignments: [],
+            showCompleted: true
         }
     },
 
